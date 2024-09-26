@@ -2,49 +2,92 @@
 
 const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
-/* 
 
-  //Given this problem: 
+
+  // //Given this problem: 
   
-  function firstItem(arr, cb) {
-    // firstItem passes the first item of the given array to the callback function.
-  }
+  // function firstItem(arr, cb) {
+  //   // firstItem passes the first item of the given array to the callback function.
+  // }
 
-  // Potential Solution:
+  // // Potential Solution:
 
-  // Higher order function using "cb" as the call back
-  function firstItem(arr, cb) {
-    return cb(arr[0]);
-  }
+  // // Higher order function using "cb" as the call back
+  // function firstItem(arr, cb) {
+  //   return cb(arr[0]);
+  // }
 
+  // // Function invocation 
+  // firstItem(items, function(first) {
+  //   console.log(first)
+  // });
+
+
+
+// Passes the length of the array into the callback.
+function getLength(arr, cb) {
+    return cb(arr.length);
+}
   // Function invocation 
-  firstItem(items, function(first) {
-    console.log(first)
+  getLength(items,(length)=> {
+    console.log(length)
   });
 
-*/
 
-
-function getLength(arr, cb) {
-  // getLength passes the length of the array into the callback.
-}
-
+// Passes the last item of the array into the callback
 function last(arr, cb) {
-  // last passes the last item of the array into the callback.
+  return cb(arr[ arr.length -1 ]);
 }
+  // Function invocation 
+  last(items,(lastItem)=> {
+    console.log(lastItem)
+  });
 
+
+// Adds two numbers (x, y) and passes the result to the callback.
 function sumNums(x, y, cb) {
-  // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x+y);
 }
+  // Function invocation 
+  sumNums(3, 7, function (sum) {
+    console.log(sum);
+  });
 
+
+// multiplies two numbers (x, y) and passes the result to the callback.
 function multiplyNums(x, y, cb) {
-  // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x*y);
 }
+   // Function invocation 
+   multiplyNums(3, 7, function (product) {
+     console.log(product);
+   });
 
+
+// checks if an item is present inside of the given array/list. Pass True or False.
+// METHOD 1 Using .includes
 function contains(item, list, cb) {
-  // contains checks if an item is present inside of the given array/list.
-  // Pass true to the callback if it is, otherwise pass false.
+  cb(list.includes(item));
 }
+  // Function invocation 
+  contains('yo-yo', items, function (contains) {
+    console.log(contains);
+  });
+
+//Method 2 Using .forEach
+function contains(item, list, cb) {
+  let check= false;
+  list.forEach(function(element) {
+  if(element === item){
+    check= true;
+  }
+  })
+  cb(check);
+}
+ // Function invocation 
+ contains(3, items, function (contains) {
+   console.log(contains);
+ });
 
 /* STRETCH PROBLEM */
 

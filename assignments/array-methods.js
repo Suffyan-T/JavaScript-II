@@ -56,28 +56,64 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+    runners.forEach(element=>{
+        fullName.push(`${element.first_name} ${element.last_name}`);
+      });
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+    allCaps = runners.map(x => x.first_name.toUpperCase());
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
-let largeShirts = [];
+let largeShirts = []
+    largeShirts = runners.filter(elem => elem.shirt_size === "L");
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+    ticketPriceTotal =runners.reduce((accumulator, currentValue) => accumulator + currentValue.donation, 0);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// Create an email list to notify users of event changes.
+let emailList = [];
+    runners.forEach(element=>{
+      emailList.push(element.email);
+    });
+console.log(emailList);
 
 // Problem 2
+// The runners get different goodie bags depending on the size of their donations. The following code creates three arrays of runners for the three different bags types.
+// Donation of 0-100
+let standardBag = runners.filter(elem => elem.donation <= 100);
+// Donation of 100-200
+let deluxBag = runners.filter(elem => elem.donation >= 100 && elem.donation <= 200 );
+// Donation of 200+
+let premiumBag = runners.filter(elem => elem.donation >= 200);
+
+// Log the arrays
+console.log(standardBag);
+console.log(deluxBag);
+console.log(premiumBag);
 
 // Problem 3
+// The people handing out the bags dont need all of the data in the bag arrays. The following code gives them a list of first and last names for each bag type.
+let standardBagList= [];
+let deluxBagList = [];
+let premiumBagList = [];
+
+standardBag.forEach(element=> {standardBagList.push(`${element.first_name} ${element.last_name}`); });
+deluxBag.forEach(element=> {deluxBagList.push(`${element.first_name} ${element.last_name}`); });
+premiumBag.forEach(element=> {premiumBagList.push(`${element.first_name} ${element.last_name}`); });
+
+console.log(standardBagList);
+console.log(deluxBagList);
+console.log(premiumBagList);
